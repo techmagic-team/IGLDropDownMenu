@@ -272,8 +272,15 @@
 
 - (void)toggleView
 {
-    self.animationFinished = NO;
-    self.expanding = !self.isExpanding;
+    if (!self.isEnableExpandingBeforeFinish) {
+        if (self.animationFinished) {
+            self.expanding = !self.isExpanding;
+            self.animationFinished = NO;
+        }
+    } else {
+        self.expanding = !self.isExpanding;
+        self.animationFinished = NO;
+    }
 }
 
 - (void)updateView
@@ -281,11 +288,7 @@
     if (self.shouldFlipWhenToggleView) {
         [self flipMainButton];
     }
-    
-    if (self.isEnableExpandingBeforeFinish && !self.animationFinished) {
-        return;
-    }
-    
+
     if (self.isExpanding) {
         [self expandView];
     } else {
@@ -347,6 +350,7 @@
             } completion:^(BOOL finished) {
                 if (i == 0) {
                     [self updateSelfFrame];
+                    self.animationFinished = finished;
                 }
             }];
 #endif
@@ -356,8 +360,8 @@
             } completion:^(BOOL finished) {
                 if (i == 0) {
                     [self updateSelfFrame];
+                    self.animationFinished = finished;
                 }
-                self.animationFinished = YES;
             }];
         }
         
@@ -398,7 +402,9 @@
             } completion:^(BOOL finished) {
                 if (i == 0) {
                     [self updateSelfFrame];
+                    self.animationFinished = finished;
                 }
+                
             }];
 #endif
         } else {
@@ -407,8 +413,8 @@
             } completion:^(BOOL finished) {
                 if (i == 0) {
                     [self updateSelfFrame];
+                    self.animationFinished = finished;
                 }
-                self.animationFinished = YES;
             }];
         }
         
