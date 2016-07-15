@@ -271,6 +271,7 @@
 
 - (void)toggleView
 {
+    self.animationFinished = NO;
     self.expanding = !self.isExpanding;
 }
 
@@ -351,6 +352,7 @@
                 if (i == 0) {
                     [self updateSelfFrame];
                 }
+                self.animationFinished = YES;
             }];
         }
         
@@ -401,9 +403,7 @@
                 if (i == 0) {
                     [self updateSelfFrame];
                 }
-                if ([self.delegate respondsToSelector:@selector(dropDownMenu:expandingFinished:)]) {
-                    [self.delegate dropDownMenu:self expandingFinished:finished];
-                }
+                self.animationFinished = YES;
             }];
         }
         

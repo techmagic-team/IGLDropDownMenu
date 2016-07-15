@@ -38,7 +38,6 @@ typedef NS_ENUM(NSUInteger, IGLDropDownMenuDirection) {
 @optional
 - (void)dropDownMenu:(IGLDropDownMenu*)dropDownMenu selectedItemAtIndex:(NSInteger)index;
 - (void)dropDownMenu:(IGLDropDownMenu *)dropDownMenu expandingChanged:(BOOL)isExpending;
-- (void)dropDownMenu:(IGLDropDownMenu *)dropDownMenu expandingFinished:(BOOL)successfully;
 
 @end
 
@@ -65,6 +64,7 @@ typedef NS_ENUM(NSUInteger, IGLDropDownMenuDirection) {
 @property (nonatomic, assign) CGFloat alphaOnFold;
 @property (nonatomic, assign, getter = isMenuButtonStatic) BOOL menuButtonStatic;
 @property (nonatomic, assign, getter = isExpanding) BOOL expanding;
+@property (nonatomic, assign, getter = isAnimationFinished) BOOL animationFinished;
 @property (nonatomic, assign, getter = shouldFlipWhenToggleView) BOOL flipWhenToggleView;
 @property (nonatomic, assign, getter = shouldUseSpringAnimation) BOOL useSpringAnimation;
 
