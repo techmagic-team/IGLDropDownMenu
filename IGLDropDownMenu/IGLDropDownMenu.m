@@ -401,6 +401,9 @@
                 if (i == 0) {
                     [self updateSelfFrame];
                 }
+                if ([self.delegate respondsToSelector:@selector(dropDownMenu:expandingFinished:)]) {
+                    [self.delegate dropDownMenu:self expandingFinished:finished];
+                }
             }];
         }
         
