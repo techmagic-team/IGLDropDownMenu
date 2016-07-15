@@ -21,6 +21,7 @@
 @property (nonatomic, assign) CGRect oldFrame;
 @property (nonatomic, assign) CGRect originalFrame;
 @property (nonatomic, copy) void (^selectedItemChangeBlock)(NSInteger selectedIndex);
+@property (nonatomic, assign, getter = isAnimationFinished) BOOL animationFinished;
 
 @end
 
@@ -279,6 +280,10 @@
 {
     if (self.shouldFlipWhenToggleView) {
         [self flipMainButton];
+    }
+    
+    if (self.isEnableExpandingBeforeFinish && !self.animationFinished) {
+        return;
     }
     
     if (self.isExpanding) {
