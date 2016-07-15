@@ -60,7 +60,6 @@
     self.originalFrame = self.frame;
     [self resetParams];
     self.menuButton = [[IGLDropDownItem alloc] init];
-
 }
 
 - (void)setFrame:(CGRect)frame
@@ -120,6 +119,7 @@
     _expanding = NO;
     self.useSpringAnimation = YES;
     self.menuButtonStatic = NO;
+    self.animationFinished = YES;
     
     self.selectedIndex = -1;
 }
